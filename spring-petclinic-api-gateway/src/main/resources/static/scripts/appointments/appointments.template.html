@@ -1,0 +1,24 @@
+<h2>Appointments</h2>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Date</th>
+        <th>Owner</th>
+        <th>Pet</th>
+        <th>Description</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="appointment in $ctrl.appointmentsList">
+        <td>{{appointment.appointmentDate | date:'yyyy-MM-dd HH:mm'}}</td>
+        <td>
+            <a ui-sref="ownerDetails({ ownerId: appointment.ownerId })">
+                {{appointment.owner.firstName}} {{appointment.owner.lastName}}
+            </a>
+        </td>
+        <td><span>{{appointment.pet.name}}</span></td>
+        <td>{{appointment.description}}</td>
+    </tr>
+    </tbody>
+</table>

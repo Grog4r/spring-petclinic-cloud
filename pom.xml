@@ -18,6 +18,7 @@
 	<modules>
 		<module>spring-petclinic-admin-server</module>
 		<module>spring-petclinic-customers-service</module>
+		<module>spring-petclinic-appointments-service</module>
 		<module>spring-petclinic-vets-service</module>
 		<module>spring-petclinic-visits-service</module>
 		<module>spring-petclinic-config-server</module>

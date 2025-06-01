@@ -53,6 +53,7 @@ data:
             enabled: true
 
     customers-service-id: http://customers-service.spring-petclinic.svc.cluster.local:8080
+    appointments-service-id: http://appointments-service.spring-petclinic.svc.cluster.local:8080
     visits-service-id: http://vists-service.spring-petclinic.svc.cluster.local:8080
 
     spring:
@@ -107,6 +108,12 @@ data:
                 - StripPrefix=2
             - id: customers-service
               uri: http://customers-service.spring-petclinic.svc.cluster.local:8080
+              predicates:
+                - Path=/api/customer/**
+              filters:
+                - StripPrefix=2
+            - id: appointments-service
+              uri: http://appointments-service.spring-petclinic.svc.cluster.local:8080
               predicates:
                 - Path=/api/customer/**
               filters:

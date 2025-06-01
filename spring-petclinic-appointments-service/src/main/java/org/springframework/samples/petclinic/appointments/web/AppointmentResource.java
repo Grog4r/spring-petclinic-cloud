@@ -1,0 +1,37 @@
+package org.springframework.samples.petclinic.appointments.web;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.samples.petclinic.appointments.model.Appointment;
+import org.springframework.samples.petclinic.appointments.model.AppointmentRepository;
+import org.springframework.samples.petclinic.appointments.web.mapper.AppointmentMapper;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+@RestController
+@RequestMapping("/appointments")
+public class AppointmentResource {
+
+    private final AppointmentRepository repository;
+
+    @Autowired
+    public AppointmentResource(AppointmentRepository repository) {
+        this.repository = repository;
+    }
+
+    @GetMapping
+    public List<AppointmentDetails> getAll() {
+        return repository.findAll().stream()
+            .map(AppointmentMapper::toDetails)
+            .collect(Collectors.toList());
+    }
+
+    @PostMapping("/new")
+    public ResponseEntity<AppointmentDetails> create(@RequestBody AppointmentRequest request) {
+        Appointment appointment = AppointmentMapper.toEntity(request);
+        Appointment saved = repository.save(appointment);
+        return ResponseEntity.ok(AppointmentMapper.toDetails(saved));
+    }
+}

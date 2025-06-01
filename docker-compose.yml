@@ -29,6 +29,18 @@ services:
     ports:
     - 8081:8081
 
+  appointments-service:
+    image: springcommunity/spring-petclinic-cloud-appointments-service
+    container_name: appointments-service
+    mem_limit: 512M
+    depends_on:
+     - config-server
+     - discovery-server
+    entrypoint: ["./dockerize","-wait=tcp://discovery-server:8761","-timeout=60s","--","java", "-XX:+UnlockExperimentalVMOptions", "-XX:+UseContainerSupport", "-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+    ports:
+    - 8084:8084
+
+
   visits-service:
     image: springcommunity/spring-petclinic-cloud-visits-service
     container_name: visits-service
