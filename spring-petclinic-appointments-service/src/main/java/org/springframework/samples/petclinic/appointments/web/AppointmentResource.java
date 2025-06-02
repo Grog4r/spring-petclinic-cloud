@@ -7,6 +7,8 @@ import org.springframework.samples.petclinic.appointments.model.AppointmentRepos
 import org.springframework.samples.petclinic.appointments.web.mapper.AppointmentMapper;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,8 +26,19 @@ public class AppointmentResource {
     @GetMapping
     public List<AppointmentDetails> getAll() {
         return repository.findAll().stream()
-            .map(AppointmentMapper::toDetails)
-            .collect(Collectors.toList());
+                .map(AppointmentMapper::toDetails)
+                .collect(Collectors.toList());
+    }
+
+    // NEUER ENDPUNKT FÜR POD-INFORMATIONEN
+    @GetMapping("/info")
+    public ResponseEntity<String> getPodInfo() {
+        try {
+            String hostname = InetAddress.getLocalHost().getHostName();
+            return ResponseEntity.ok("Handled by Pod: " + hostname);
+        } catch (UnknownHostException e) {
+            return ResponseEntity.status(500).body("Could not determine hostname.");
+        }
     }
 
     @PostMapping("/new")
