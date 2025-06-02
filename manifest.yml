@@ -1,5 +1,5 @@
 ---
-appointments:
+applications:
   - name: customers-service
     path: spring-petclinic-customers-service/target/customers-service.jar
     buildpacks:

@@ -115,7 +115,7 @@ data:
             - id: appointments-service
               uri: http://appointments-service.spring-petclinic.svc.cluster.local:8080
               predicates:
-                - Path=/api/customer/**
+                - Path=/api/appointments/**
               filters:
                 - StripPrefix=2
     vets:
