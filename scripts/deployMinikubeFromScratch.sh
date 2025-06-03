@@ -12,7 +12,4 @@ kubectl apply -f k8s/prometheus
 
 ./scripts/deployHelmResources.sh
 
-echo "Grafana login: username: admin, password:" 
-kubectl get secret --namespace monitoring grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
-
 ./scripts/exposeGrafana.sh

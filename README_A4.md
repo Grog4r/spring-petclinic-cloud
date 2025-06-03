@@ -22,4 +22,7 @@ kubectl get svc api-gateway -n spring-petclinic
 
 # Redeploy all Services in the spring-petclinic Namespace
 ./scripts/redeployServices.sh
+
+# Redeploy all Services in the monitoring Namespace
+./scripts/redeployMonitoring.sh
 ```
