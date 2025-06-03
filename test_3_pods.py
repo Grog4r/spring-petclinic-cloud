@@ -7,7 +7,7 @@ from collections import Counter
 # Die URL Ihres Spring Boot Microservice Endpunkts
 # Ersetzen Sie 'YOUR_EXTERNAL_IP' durch die tatsächliche externe IP Ihres Kubernetes Service
 # und stellen Sie sicher, dass der Pfad korrekt ist (z.B. /appointments/info)
-TARGET_URL = "http://10.105.114.155/api/appointments/appointments/info"
+TARGET_URL = "http://10.108.191.57/api/appointments/appointments/info"
 
 # Anzahl der parallelen Anfragen, die gesendet werden sollen
 NUM_PARALLEL_REQUESTS = 20
