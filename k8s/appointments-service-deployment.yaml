@@ -8,7 +8,7 @@ metadata:
   name: appointments-service
   namespace: spring-petclinic
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: appointments-service
